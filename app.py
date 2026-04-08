@@ -1744,18 +1744,6 @@ def run_streamlit():
             c3.metric("📊 Brier Score", f"{r['brier']:.4f}")
             c4.metric("🤖 ML Bal. Acc", f"{r.get('ml_acc',0):.1f}%")
 
-# ══════════════════════════════════════════════════════════════
-# CLI MAIN
-# ══════════════════════════════════════════════════════════════
-def cli_main():
-    tok = FOOTBALL_DATA_KEY or os.environ.get("FOOTBALL_DATA_KEY", "")
-    if not tok: tok = input(C.cyan(" 🔑 API key: ")).strip()
-    app = App(tok)
-    if app.init(): app.interactive()
-
-if STREAMLIT_AVAILABLE: run_streamlit()
-elif __name__ == "__main__": cli_main()
-
 
 # ══════════════════════════════════════════════════════════════
 # CLI MAIN
