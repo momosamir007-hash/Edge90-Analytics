@@ -1497,7 +1497,9 @@ class Disp:
         bsc = C.green if bs<0.15 else (C.yellow if bs<0.22 else C.red)
         print(box(f" Brier Score: {bsc(f'{bs:.4f}')}"))
         if r.get('ml_acc',0) > 0:
-            print(box(f" ML Balanced Acc: {C.green(f\"{r['ml_acc']:.1f}%\")}"))
+            # فصلنا النص في متغير لتجنب تداخل الأقواس وعلامات التنصيص
+            acc_str = f"{r['ml_acc']:.1f}%"
+            print(box(f" ML Balanced Acc: {C.green(acc_str)}"))
         print(f" {C.blue('└'+'─'*w+'┘')}")
 
 # ══════════════════════════════════════════════════════════════
