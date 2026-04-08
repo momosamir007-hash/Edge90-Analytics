@@ -1547,7 +1547,7 @@ class App:
         
         # 1. Load Deep Stats from CSV
         self._log_msg('progress', "Loading historical deep stats from CSV...")
-        csv_matches = load_csv_history("E0 (1).csv")
+        csv_matches = load_csv_history("E0_Master.csv")
         if csv_matches:
             self.raw.extend(csv_matches)
             self._log_msg('success', f"Loaded {len(csv_matches)} matches with Deep Stats! 📊")
