@@ -577,7 +577,15 @@ class Team:
     def days_rest(self, ref: datetime = None) -> int:
         if not self.match_dates: return 7
         ref = ref or datetime.now()
-        return max(0, (ref - max(self.match_dates)).days)
+        # نأخذ فقط المباريات التي لُعبت *قبل* تاريخ التوقع
+        past_dates = [d for d in self.match_dates if d < ref]
+        if not past_dates: return 7
+        return max(0, (ref - max(past_dates)).days)
+    def matches_in(self, n: int = 14, ref: datetime = None) -> int:
+        ref = ref or datetime.now()
+        cut = ref - timedelta(days=n)
+        # نعد المباريات التي وقعت في الماضي ضمن النافذة المحددة فقط
+        return sum(1 for d in self.match_dates if cut <= d < ref)
 
     def matches_in(self, n: int = 14, ref: datetime = None) -> int:
         ref = ref or datetime.now()
@@ -876,8 +884,9 @@ class DataProc:
                 h.cs += 1
             if hg == 0:
                 a.cs += 1
-            h.fts += 1
-            if ag == 0 and hg > 0:
+            if hg == 0:
+                h.fts += 1
+            if ag == 0:
                 a.fts += 1
             stats = m.get('stats')
             if stats:
@@ -1673,7 +1682,7 @@ class Engine:
         fa = 0.7 + 0.3 * min(fa, 2.0)
 
         raw_xg = att * df * base * fa
-        return max(0.25, min(raw_xg, 3.5))  # الحد الأقصى 4.0 بدلاً من 4.5
+        return max(0.25, min(raw_xg, 3.5))  
 
     def _form(self, h: Team, a: Team) -> Tuple[float, float, float]:
         hf = h.form_score
