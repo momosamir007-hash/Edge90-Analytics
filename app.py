@@ -1659,13 +1659,13 @@ class Engine:
             # هجوم الفريق المضيف في ملعبه
             att = safe_div(t.h_avg_gf, ah, 1.0)
             # دفاع الفريق الضيف خارج ملعبه - يُقسم على avg_a ✅
-            df = safe_div(opp.a_avg_ga, aa, 1.0)
+            df = safe_div(opp.a_avg_ga, ah, 1.0)
             base = ah
         else:
             # هجوم الفريق الضيف خارج ملعبه
             att = safe_div(t.a_avg_gf, aa, 1.0)
             # دفاع الفريق المضيف في ملعبه - يُقسم على avg_h ✅
-            df = safe_div(opp.h_avg_ga, ah, 1.0)
+            df = safe_div(opp.h_avg_ga, aa, 1.0)
             base = aa
 
         # وزن فورم التهديف
@@ -1673,7 +1673,7 @@ class Engine:
         fa = 0.7 + 0.3 * min(fa, 2.0)
 
         raw_xg = att * df * base * fa
-        return max(0.25, min(raw_xg, 4.0))  # الحد الأقصى 4.0 بدلاً من 4.5
+        return max(0.25, min(raw_xg, 3.5))  # الحد الأقصى 4.0 بدلاً من 4.5
 
     def _form(self, h: Team, a: Team) -> Tuple[float, float, float]:
         hf = h.form_score
