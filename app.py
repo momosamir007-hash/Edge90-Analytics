@@ -2841,7 +2841,9 @@ class Disp:
         bsc = C.green if bs < 0.15 else (C.yellow if bs < 0.22 else C.red)
         print(f" 📐 Brier Score : {bsc(f'{bs:.4f}')}")
         if r.get('ml_acc', 0) > 0:
-            print(f" 🤖 ML Bal. Acc : {C.green(f'{r["ml_acc"]:.1f}%')}")
+            ml_acc_str = f"{r['ml_acc']:.1f}%"
+            print(f" 🤖 ML Bal. Acc : {C.green(ml_acc_str)}")
+
         print()
         print(f" 🏠 Home Win Acc : {r.get('home_acc',0):.1f}% ({r.get('home_total',0)} matches)")
         print(f" 🤝 Draw Acc : {r.get('draw_acc',0):.1f}% ({r.get('draw_total',0)} matches)")
