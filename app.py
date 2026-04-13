@@ -2297,7 +2297,7 @@ class Backtester:
                     errors[key] += 1
 
         print("\n ═══════ Confusion Matrix ═══════")
-        print(f" {'Pred\\Actual':>12} {'HOME':>8} {'DRAW':>8} {'AWAY':>8}")
+        print(f" {'Pred/Actual':>12} {'HOME':>8} {'DRAW':>8} {'AWAY':>8}")
         print(f" {'─' * 40}")
         for pred_label in ['HOME', 'DRAW', 'AWAY']:
             row = f" {pred_label:>12}"
