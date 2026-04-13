@@ -2849,9 +2849,12 @@ class Disp:
         print(f" 🤝 Draw Acc : {r.get('draw_acc',0):.1f}% ({r.get('draw_total',0)} matches)")
         print(f" ✈️ Away Win Acc : {r.get('away_acc',0):.1f}% ({r.get('away_total',0)} matches)")
         print()
-        print(f" 🔥 High Conf >60% : {C.green(f'{r.get('hi_acc',0):.1f}%')} ({r.get('hi_n',0)} matches)")
-        print(f" ⚡ Med Conf 45-60% : {C.yellow(f'{r.get('me_acc',0):.1f}%')} ({r.get('me_n',0)} matches)")
-        print(f" ⚠️ Low Conf <45% : {C.red(f'{r.get('lo_acc',0):.1f}%')} ({r.get('lo_n',0)} matches)")
+        hi_str = f"{r.get('hi_acc', 0):.1f}%"
+        me_str = f"{r.get('me_acc', 0):.1f}%"
+        lo_str = f"{r.get('lo_acc', 0):.1f}%"
+        print(f" 🔥 High Conf >60% : {C.green(hi_str)} ({r.get('hi_n',0)} matches)")
+        print(f" ⚡ Med Conf 45-60% : {C.yellow(me_str)} ({r.get('me_n',0)} matches)")
+        print(f" ⚠️ Low Conf <45% : {C.red(lo_str)} ({r.get('lo_n',0)} matches)")
         print()
         print(f" 🛡️ DC 1X Acc : {r.get('dc_1x_acc',0):.1f}% ({r.get('dc_1x_n',0)} matches)")
         print(f" 🛡️ DC X2 Acc : {r.get('dc_x2_acc',0):.1f}% ({r.get('dc_x2_n',0)} matches)")
